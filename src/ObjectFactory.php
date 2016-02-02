@@ -502,7 +502,13 @@ class ObjectFactory implements ObjectFactoryInterface
      */
     public function createAce($principal, array $permissions)
     {
-        // TODO: Implement createAce() method.
+        // Binding Object Factory from session
+	$bof = $this->session->getBinding()->getObjectFactory();
+
+	// Create ACE with particular principal and permissions
+        $ace = $bof->createAccessControlEntry($principal, $permissions);
+
+        return $ace;
     }
 
     /**
